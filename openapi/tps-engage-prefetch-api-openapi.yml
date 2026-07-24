@@ -1,0 +1,63 @@
+openapi: 3.0.0
+info:
+  title: Blindspot Pull Play Prefetch API
+  version: 1.0.0
+  description: 'The Blindspot Pull API provides two main endpoints to interact with the service:
+
+    1. Play - To retrieve media playback information.
+
+    2. Prefetch Media - To retrieve media in advance based on the device ID.
+
+    '
+servers:
+- url: https://rtb.network.tpsengage.com/api/{apiPublisher}
+  variables:
+    apiPublisher:
+      default: sv
+      description: The API publisher identifier
+tags:
+- name: Prefetch
+paths:
+  /prefetch/{deviceId}:
+    get:
+      summary: Prefetch Media
+      description: Retrieves the media information for preloading purposes based on the device ID.
+      parameters:
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        description: A unique identifier for the device.
+        example: 77276c2f-726a-4d6c-aa87-29041d47419d
+      responses:
+        '200':
+          description: Successful response with media information for prefetching
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrefetchResponse'
+              examples:
+                withContent:
+                  summary: Response with prefetch content
+                  value:
+                  - creativeId: 170254d6-2d89-45db-8613-03fd1efac643
+                    creativeUrl: https://storage.googleapis.com/engage-transcoded-videos/170254d6-2d89-45db-8613-03fd1efac643.mp4
+                noContent:
+                  summary: Response with no prefetch content
+                  value: []
+        '404':
+          description: Device ID not found
+      tags:
+      - Prefetch
+components:
+  schemas:
+    PrefetchResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          creativeId:
+            type: string
+          creativeUrl:
+            type: string

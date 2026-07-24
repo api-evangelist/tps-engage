@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: Blindspot Pull Play API
+  version: 1.0.0
+  description: 'The Blindspot Pull API provides two main endpoints to interact with the service:
+
+    1. Play - To retrieve media playback information.
+
+    2. Prefetch Media - To retrieve media in advance based on the device ID.
+
+    '
+servers:
+- url: https://rtb.network.tpsengage.com/api/{apiPublisher}
+  variables:
+    apiPublisher:
+      default: sv
+      description: The API publisher identifier
+tags:
+- name: Play
+paths:
+  /play/{deviceId}:
+    get:
+      summary: Play Media
+      description: Retrieves the media that is to be played immediately.
+      parameters:
+      - in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        description: A unique identifier for the device.
+        example: 77276c2f-726a-4d6c-aa87-29041d47419d
+      responses:
+        '200':
+          description: Successful response with media information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayResponse'
+              example:
+                bidId: 52c95e06-af5f-4f3a-bf33-ae431e596998
+                creativeId: 170254d6-2d89-45db-8613-03fd1efac643
+                creativeUrl: https://storage.googleapis.com/engage-transcoded-videos/170254d6-2d89-45db-8613-03fd1efac643.mp4
+                popUrl: https://playlog.network.tpsengage.com/add?location=77276c2f-726a-4d6c-aa87-29041d47419d&media=170254d6-2d89-45db-8613-03fd1efac643&campaign=6253f1d3-2edd-43a2-beac-67b43ab59bae&network=6696bb71-b470-4861-8e8f-fce0c019c3a8&payload=%7B%22bidId%22%3A%2252c95e06-af5f-4f3a-bf33-ae431e596998%22%2C%22audience%22%3A1%2C%22cpm%22%3A1%7D
+        '204':
+          description: No content available for playback at the moment
+      tags:
+      - Play
+components:
+  schemas:
+    PlayResponse:
+      type: object
+      properties:
+        bidId:
+          type: string
+        creativeId:
+          type: string
+        creativeUrl:
+          type: string
+        popUrl:
+          type: string
