@@ -1,0 +1,10 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/tps-engage-blindspot-pull-api-openapi.yaml
+skills:
+- file: tps-engage-play-and-log-media.md
+  name: tps-engage-play-and-log-media
+  api: Blindspot Pull API
+  description: >-
+    Prefetch, play, and proof-of-play-log creatives on a Blindspot (TPS
+    Engage) DOOH player device via the Pull API.

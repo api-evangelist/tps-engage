@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tps-engage-blindspot-pull-api-openapi.yaml
+format: http-status
+summary: >-
+  Derived from the Blindspot Pull API OpenAPI. The API does not use RFC 9457
+  application/problem+json — error semantics are plain HTTP status codes. No
+  public error-reference documentation was found to enrich this catalog.
+problem_types:
+- status: 204
+  operation: GET /play/{deviceId}
+  title: No content available for playback
+  detail: >-
+    Not an error — the device currently has no scheduled creative to play.
+    Players should treat 204 as "show fallback/house content".
+- status: 404
+  operation: GET /prefetch/{deviceId}
+  title: Device ID not found
+  detail: The supplied deviceId is not registered on the Blindspot network.
+- status: 500
+  operation: observed
+  title: Internal server error
+  detail: >-
+    Observed live on https://rtb.network.tpsengage.com/api/sv/play/<invalid-id>
+    during probing (2026-07-21) — an unknown/malformed deviceId on /play
+    returns 500 rather than 404.

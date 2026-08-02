@@ -1,0 +1,38 @@
+# generated: '2026-07-21'
+# method: generated
+# source: openapi/tps-engage-blindspot-pull-api-openapi.yaml
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements — Blindspot Pull API
+  version: 1.0.0
+extends: openapi/tps-engage-blindspot-pull-api-openapi.yaml
+actions:
+- target: $.paths['/play/{deviceId}'].get
+  update:
+    operationId: playMedia
+    tags:
+    - Playback
+- target: $.paths['/prefetch/{deviceId}'].get
+  update:
+    operationId: prefetchMedia
+    tags:
+    - Playback
+- target: $.info
+  update:
+    x-audience: >-
+      Screen owners / media publishers integrating player devices with the
+      Blindspot (TPS Engage) DOOH network. Devices pull the creative to play
+      now (/play) or preload upcoming creatives (/prefetch), and report a
+      verified play by requesting the returned popUrl playlog callback.
+- target: $.components.schemas.PlayResponse
+  update:
+    description: >-
+      Media to play immediately on the device. popUrl is the proof-of-play
+      logging callback the player must call after rendering the creative; it
+      encodes location (device), media (creative), campaign, network, and a
+      bid payload (bidId, audience, cpm).
+- target: $.components.schemas.PrefetchResponse
+  update:
+    description: >-
+      Creatives the device should cache ahead of playback. An empty array is a
+      valid response meaning nothing to prefetch.

@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: npm registry search (registry.npmjs.org) + github.com/TPSEngage
+summary: >-
+  TPS Engage (Blindspot, seeblindspot.com) publishes one first-party package on
+  npm under the @tpsengage scope — an hour-parting scheduler utility used by
+  the platform's hourly DOOH booking grid. It is a utility library, not an API
+  client SDK; no first-party API client SDKs were found on npm, PyPI, or other
+  registries. The TPSEngage GitHub org (7 public repos) is mostly forks
+  (react-map-gl, react-mapbox-gl, seraph, node-segfault-handler,
+  zeebe-cluster-helm) plus BlindspotPullApi (API docs) and TestFileCreator.
+packages:
+- name: '@tpsengage/hour-parting-scheduler'
+  registry: npm
+  url: https://www.npmjs.com/package/@tpsengage/hour-parting-scheduler
+  version: 1.2.33
+  last_published: '2024-03-19'
+  license: ISC
+  repository: https://github.com/TPSEngage/hour-parting-scheduler
+  official: true
+  sdk: false
+  notes: >-
+    Hour-parting scheduler utility (per-screen hourly scheduling grid).
+    First-party org-scoped package; not a client SDK for a public API.

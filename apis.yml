@@ -1,7 +1,16 @@
 aid: tps-engage
 name: TPS Engage
-description: TPS Engage is a company surfaced as a portfolio company of techstars and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  TPS Engage, LLC operates Blindspot (seeblindspot.com), a self-serve
+  programmatic digital out-of-home (DOOH) advertising platform: 3,000,000+
+  digital billboards and screens in 50+ countries bookable by the exact hour,
+  with pay-per-play pricing, no minimums, and an agentic AI media planner
+  (Blinky). The company publishes one public API — the Blindspot Pull API, the
+  device-facing surface screen owners use to pull the creative to play,
+  prefetch media, and log verified proof-of-play — documented with an OpenAPI
+  3.0 spec on the TPSEngage GitHub org. Originally added to the API Evangelist
+  network as a Techstars portfolio lead, this profile has been enriched from
+  Blindspot's public surface.
 url: https://raw.githubusercontent.com/api-evangelist/tps-engage/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +18,102 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://seeblindspot.com/wp-content/uploads/APU.COM-_The-One-Times-Square-NYC-Blindspot-1-1.jpg
 tags:
 - Company
-apis: []
+- Advertising
+- DOOH
+- Digital Billboards
+- Programmatic Advertising
+- Media Buying
+- Out-of-Home
+apis:
+- aid: tps-engage:tps-engage-play-api
+  name: TPS Engage Play API
+  description: The Play API from TPS Engage — 1 operation(s) for play.
+  humanURL: https://tpsengage.github.io/BlindspotPullApi/
+  baseURL: https://rtb.network.tpsengage.com/api/sv
+  tags:
+  - Play
+  properties:
+  - type: OpenAPI
+    url: openapi/tps-engage-play-api-openapi.yml
+  - type: Documentation
+    url: https://tpsengage.github.io/BlindspotPullApi/
+  - type: ErrorCatalog
+    url: errors/tps-engage-problem-types.yml
+  - type: Conformance
+    url: conformance/tps-engage-conformance.yml
+  - type: DataModel
+    url: data-model/tps-engage-data-model.yml
+- aid: tps-engage:tps-engage-prefetch-api
+  name: TPS Engage Prefetch API
+  description: The Prefetch API from TPS Engage — 1 operation(s) for prefetch.
+  humanURL: https://tpsengage.github.io/BlindspotPullApi/
+  baseURL: https://rtb.network.tpsengage.com/api/sv
+  tags:
+  - Prefetch
+  properties:
+  - type: OpenAPI
+    url: openapi/tps-engage-prefetch-api-openapi.yml
+  - type: Documentation
+    url: https://tpsengage.github.io/BlindspotPullApi/
+  - type: ErrorCatalog
+    url: errors/tps-engage-problem-types.yml
+  - type: Conformance
+    url: conformance/tps-engage-conformance.yml
+  - type: DataModel
+    url: data-model/tps-engage-data-model.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/tps-engage-domain-security.yml
 - type: Website
   url: https://seeblindspot.com/
+- type: Documentation
+  url: https://tpsengage.github.io/BlindspotPullApi/
+- type: APIReference
+  url: https://tpsengage.github.io/BlindspotPullApi/
+- type: GitHubOrganization
+  url: https://github.com/TPSEngage
+- type: Support
+  url: https://seeblindspot.com/contact/
+- type: Pricing
+  url: https://seeblindspot.com/dooh-pricing-index/
+- type: SignUp
+  url: https://portal.seeblindspot.com/join
+- type: Login
+  url: https://portal.seeblindspot.com/auth/login
+- type: TermsOfService
+  url: https://seeblindspot.com/terms-of-service/
+- type: PrivacyPolicy
+  url: https://seeblindspot.com/privacy-policy/
+- type: LLMsTxt
+  url: llms/tps-engage-llms.txt
+- type: Packages
+  url: packages/tps-engage-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 12
+  pass: local-v1

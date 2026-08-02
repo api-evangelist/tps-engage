@@ -1,0 +1,46 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tps-engage-blindspot-pull-api-openapi.yaml
+summary: >-
+  Entity graph derived from the Blindspot Pull API schemas and response
+  examples. The public spec exposes only the device-facing playback slice of
+  the platform; campaign/network/bid entities are visible through the popUrl
+  proof-of-play callback parameters in the documented example, not as
+  first-class API resources.
+entities:
+- name: Device
+  description: A screen/player on the Blindspot DOOH network, addressed by deviceId (UUID).
+  id_field: deviceId
+- name: Creative
+  description: Transcoded media asset served from Google Cloud Storage (creativeUrl).
+  id_field: creativeId
+- name: Bid
+  description: The programmatic bid that placed a creative on a device (bidId, audience, cpm).
+  id_field: bidId
+- name: Campaign
+  description: Campaign the creative belongs to (seen in popUrl callback params).
+  id_field: campaign
+- name: Network
+  description: Screen network/publisher grouping (seen in popUrl callback params).
+  id_field: network
+relationships:
+- from: PlayResponse
+  to: Creative
+  type: belongs_to
+  via: creativeId
+- from: PlayResponse
+  to: Bid
+  type: belongs_to
+  via: bidId
+- from: PrefetchResponse[]
+  to: Creative
+  type: has_many
+  via: creativeId
+- from: Creative
+  to: Campaign
+  type: belongs_to
+  via: popUrl?campaign
+- from: Device
+  to: Network
+  type: belongs_to
+  via: popUrl?network

@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/tps-engage-blindspot-pull-api-openapi.yaml + seeblindspot.com legal pages
+summary: >-
+  Cross-cutting standards posture derived from the published Blindspot Pull
+  API spec and the public site. No compliance certifications (SOC 2, ISO
+  27001, etc.) are published on seeblindspot.com; no trust center was found.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: The Pull API OpenAPI declares no securitySchemes; no OAuth documentation found.
+- id: oidc
+  conforms: false
+  evidence: /.well-known/openid-configuration returns 404 on all probed hosts.
+- id: rfc9457
+  conforms: false
+  evidence: Error responses are bare HTTP status codes; no application/problem+json media type in the spec.
+- id: json:api
+  conforms: false
+  evidence: Responses are ad-hoc JSON objects/arrays, not JSON:API envelopes.
+- id: pagination
+  conforms: false
+  evidence: No pagination parameters or headers anywhere in the spec (single-resource GET endpoints).
+- id: idempotency
+  conforms: false
+  evidence: >-
+    No Idempotency-Key support documented. Both operations are GETs (naturally
+    idempotent reads) but no idempotency mechanism is published.
+- id: openrtb
+  conforms: false
+  evidence: >-
+    The host rtb.network.tpsengage.com and bid/cpm fields indicate an RTB-style
+    delivery pipeline, but the public Pull API is a proprietary pull protocol,
+    not IAB OpenRTB; no OpenRTB conformance claim is published.

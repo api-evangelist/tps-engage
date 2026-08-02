@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: probed
+source: live probes of seeblindspot.com, api.seeblindspot.com, api.tpsengage.com
+summary: >-
+  No /.well-known/ discovery documents are published on the Blindspot (TPS
+  Engage) hosts. All probed /.well-known/ paths returned 404 (absence is valid
+  data). The host does publish /llms.txt (200) — captured separately in
+  llms/tps-engage-llms.txt.
+hosts:
+- host: seeblindspot.com
+  paths:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /llms.txt
+    status: 200
+  - path: /robots.txt
+    status: 200
+  - path: /sitemap.xml
+    status: 200
+- host: api.seeblindspot.com
+  paths:
+  - path: /
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /openapi.json
+    status: 404
+- host: api.tpsengage.com
+  paths:
+  - path: /
+    status: 404
+files: []

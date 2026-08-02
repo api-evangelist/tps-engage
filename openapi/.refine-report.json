@@ -1,0 +1,16 @@
+{
+  "provider": "tps-engage",
+  "sources": [
+    "tps-engage-play-api-openapi.yml",
+    "tps-engage-prefetch-api-openapi.yml"
+  ],
+  "outputs": [
+    "tps-engage-play-api-openapi.yml",
+    "tps-engage-prefetch-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
