@@ -84,6 +84,10 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/tps-engage-mcp.yml
+- type: Overlay
+  url: overlays/tps-engage-blindspot-pull-api-overlay.yaml
 - type: DomainSecurity
   url: security/tps-engage-domain-security.yml
 - type: Website
