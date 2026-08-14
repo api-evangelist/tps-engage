@@ -31,7 +31,7 @@ accessModel:
   method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 image: https://seeblindspot.com/wp-content/uploads/APU.COM-_The-One-Times-Square-NYC-Blindspot-1-1.jpg
 tags:
 - Company
@@ -110,14 +110,36 @@ common:
   url: https://seeblindspot.com/terms-of-service/
 - type: PrivacyPolicy
   url: https://seeblindspot.com/privacy-policy/
+- type: GettingStarted
+  url: https://seeblindspot.com/create-your-first-campaign-in-less-than-5-minutes-step-by-step/
 - type: LLMsTxt
   url: llms/tps-engage-llms.txt
 - type: Packages
   url: packages/tps-engage-packages.yml
 - type: AgentSkill
   url: skills/_index.yml
+- type: Authentication
+  url: authentication/tps-engage-authentication.yml
+- type: Conventions
+  url: conventions/tps-engage-conventions.yml
+- type: Lifecycle
+  url: lifecycle/tps-engage-lifecycle.yml
+- type: Plans
+  url: plans/tps-engage-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/tps-engage-rate-limits.yml
+- type: Examples
+  url: examples/tps-engage-examples.yml
+- type: VulnerabilityDisclosure
+  url: security/tps-engage-vulnerability-disclosure.yml
+- type: Security
+  url: security/tps-engage-vulnerability-disclosure.yml
+- type: TrustCenter
+  url: security/tps-engage-trust-center.yml
+- type: Compliance
+  url: security/tps-engage-trust-center.yml
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 12
+  artifacts_added: 8
   pass: local-v1
