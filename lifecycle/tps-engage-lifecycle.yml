@@ -1,0 +1,118 @@
+generated: '2026-08-13'
+method: searched
+source: https://seeblindspot.com/terms-of-service/
+docs: https://seeblindspot.com/legal/
+summary: >-
+  TPS Engage publishes no API lifecycle policy. There is no changelog, no status
+  page, no deprecation or sunset policy, no versioning policy and no uptime SLA for
+  the Blindspot Pull API. What does exist is a set of commercial-contract commitments
+  in the Terms of Service and the Support & Disputes Policy — 15 days' prior notice
+  of material adverse changes, incident communication by email and in-product notice,
+  and severity-banded support acknowledgement/resolution targets. Those govern the
+  platform, not the API contract, and none of them mention API versions or endpoint
+  removal. The published OpenAPI has not changed since 2024-10-08.
+versioning:
+  policy_published: false
+  scheme: none
+  current_version: '1.0.0'
+  in_path: false
+  detail: >-
+    info.version is 1.0.0. The base URL's {apiPublisher} segment (default `sv`) is a
+    publisher identifier, not a version, so a caller has no way to pin a version and
+    no way to detect that the contract moved. No Accept-version or X-Version header.
+deprecation:
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  rfc8594: false
+  deprecated_operations: []
+  detail: >-
+    No RFC 8594 Sunset or Deprecation headers were observed on any response, and no
+    operation in the published OpenAPI carries `deprecated: true`. No API deprecation
+    or endpoint-retirement policy is published anywhere on seeblindspot.com. The
+    closest published commitment is a general contract-change clause, recorded under
+    change_notice below — it is not an API deprecation policy and is not counted as
+    one here.
+change_notice:
+  published: true
+  source: https://seeblindspot.com/terms-of-service/
+  window: 15 days
+  quote: >-
+    "For any material change that adversely affects your rights or obligations, we
+    will give at least 15 days' prior notice by email and in-Platform notice."
+  detail: >-
+    Terms of Service, section 21. Applies to the platform agreement; changes made for
+    legal or security reasons may take effect faster. Nothing in the ToS extends this
+    to API endpoints, response shapes or the Pull API contract.
+changelog:
+  published: false
+  url: null
+  detail: >-
+    No /changelog/, /releases/ or release-notes page exists on seeblindspot.com
+    (probed 2026-08-13, all 404). The only dated change record for the API is the git
+    history of the spec repository, github.com/TPSEngage/BlindspotPullApi, whose last
+    commit is 2024-10-08 ("update 5"). The repository is a fork of the
+    peter-evans/swagger-github-pages template with the Blindspot spec dropped in; it
+    has six commits, all on 2024-10-08. The published contract has therefore been
+    static for roughly 22 months.
+status_page:
+  published: false
+  url: null
+  detail: >-
+    No status.seeblindspot.com, no /status/ page, no third-party status provider
+    (Statuspage/Instatus/BetterStack) found. The Support & Disputes Policy states
+    incidents are communicated privately instead: "Platform-wide outages and
+    incidents are communicated by email and in-Platform notice." There is no public
+    surface an integrator or an agent can poll to learn whether the Pull API is up.
+sla:
+  uptime_commitment: null
+  published: false
+  detail: >-
+    No uptime percentage or availability guarantee is published. Terms of Service
+    section 7.5 disclaims the opposite: "Screens are subject to outages and technical
+    ... conditions that may delay, reduce, or prevent display."
+  support_targets:
+    source: https://seeblindspot.com/support-and-disputes-policy/
+    coverage: Follow-the-sun (New York & Bucharest)
+    channels:
+    - channel: In-product assistant (Blinky)
+      acknowledgement: Immediate (automated), 24/7
+    - channel: Email — support@seeblindspot.com
+      acknowledgement: 2 business days
+    - channel: Support ticket
+      acknowledgement: 2 business days
+    severities:
+    - severity: Critical
+      acknowledgement: 4 business hours
+      resolution_target: 2 business days
+    - severity: High
+      acknowledgement: 1 business day
+      resolution_target: 10 business days
+    - severity: Standard
+      acknowledgement: 2 business days
+      resolution_target: 15 business days
+    disputes:
+      acknowledgement: 3 business days
+      escalated_review: 15 business days
+      billing_investigation_window: 10 business days before chargeback
+observed:
+- url: https://seeblindspot.com/status/
+  status: 404
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/changelog/
+  status: 404
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/roadmap/
+  status: 404
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/terms-of-service/
+  status: 200
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/support-and-disputes-policy/
+  status: 200
+  checked: '2026-08-13'
+gaps:
+- No changelog, so a screen owner cannot tell when the Pull API last changed.
+- No status page, so outage state is only knowable by email if you are already a customer.
+- No deprecation/sunset policy and no version pinning — a breaking change would arrive unannounced at the same URL.
+- Spec unchanged since 2024-10-08 with no statement of whether that is stability or abandonment.

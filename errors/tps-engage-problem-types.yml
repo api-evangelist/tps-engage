@@ -1,26 +1,81 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: derived
-source: openapi/tps-engage-blindspot-pull-api-openapi.yaml
+source: openapi/_original/tps-engage-blindspot-pull-api-openapi.yaml + live probes of rtb.network.tpsengage.com (2026-08-13)
 format: http-status
 summary: >-
-  Derived from the Blindspot Pull API OpenAPI. The API does not use RFC 9457
-  application/problem+json — error semantics are plain HTTP status codes. No
-  public error-reference documentation was found to enrich this catalog.
+  Derived from the Blindspot Pull API OpenAPI and re-verified against the live host on
+  2026-08-13. The API does not use RFC 9457 application/problem+json; error semantics
+  are bare HTTP status codes and the response bodies are inconsistent — a routed
+  failure returns text/plain "Internal Server Error", while an unrouted path returns
+  Fastify's JSON envelope. No public error-reference documentation exists to enrich
+  this catalogue. There is no error code, no type URI and no correlation identifier
+  anywhere, so a client cannot programmatically distinguish one failure from another.
+envelopes:
+- name: routed-failure
+  content_type: text/plain; charset=utf-8
+  shape: 'literal string body, e.g. "Internal Server Error"'
+  fields: []
+  note: Returned by the two documented operations when they fail.
+- name: unrouted-path
+  content_type: application/json; charset=utf-8
+  shape: '{"message": "<string>", "error": "<string>", "statusCode": <int>}'
+  fields: [message, error, statusCode]
+  note: >-
+    Fastify's framework default, not an authored contract. Example observed:
+    {"message":"Route GET:/openapi.json not found","error":"Not Found","statusCode":404}.
 problem_types:
 - status: 204
   operation: GET /play/{deviceId}
+  declared_in_spec: true
   title: No content available for playback
   detail: >-
-    Not an error — the device currently has no scheduled creative to play.
-    Players should treat 204 as "show fallback/house content".
+    Not an error — the device currently has no scheduled creative to play. Players
+    should treat 204 as "show fallback/house content". This is the normal steady state
+    for an unsold screen-hour and must not be retried aggressively.
+  remediation: Continue polling on the device's normal cadence; render house content.
 - status: 404
   operation: GET /prefetch/{deviceId}
+  declared_in_spec: true
   title: Device ID not found
   detail: The supplied deviceId is not registered on the Blindspot network.
+  remediation: >-
+    Verify the deviceId provisioned during CMS onboarding. There is no self-service
+    device registration endpoint; contact support@seeblindspot.com.
+- status: 404
+  operation: any unrouted path
+  declared_in_spec: false
+  title: Route not found
+  detail: >-
+    Fastify default JSON envelope. Distinguishable from the documented 404 above only
+    by content-type and body shape, which is itself a hazard: the documented
+    "device not found" 404 and the framework "no such route" 404 are the same status
+    code with two different bodies.
+  remediation: Check the path and the {apiPublisher} segment of the base URL.
 - status: 500
-  operation: observed
+  operation: GET /play/{deviceId}
+  declared_in_spec: false
   title: Internal server error
   detail: >-
-    Observed live on https://rtb.network.tpsengage.com/api/sv/play/<invalid-id>
-    during probing (2026-07-21) — an unknown/malformed deviceId on /play
-    returns 500 rather than 404.
+    Observed live on 2026-08-13 against the deviceId published in the spec's own
+    example (77276c2f-726a-4d6c-aa87-29041d47419d). Body is text/plain
+    "Internal Server Error" with no code or correlation id. The prior probe on
+    2026-07-21 saw the same 500 for a malformed id, so an unknown or stale deviceId
+    surfaces as a 500 rather than the 404 the contract would suggest.
+  remediation: >-
+    Treat 500 on /play as "unknown or unprovisioned device OR upstream failure" —
+    they are indistinguishable. Back off and retry; do not interpret as "no ad".
+- status: 500
+  operation: GET /prefetch/{deviceId}
+  declared_in_spec: false
+  title: Internal server error
+  detail: >-
+    Observed live on 2026-08-13 against the spec's own example deviceId, where the
+    published contract declares 404 for an unknown device. The declared 404 was not
+    reproducible; the undeclared 500 was.
+  remediation: Same as /play — back off and retry; escalate to support if persistent.
+gaps:
+- No RFC 9457 problem+json and no machine-readable error codes.
+- Two incompatible error envelopes on the same host.
+- The spec's own example deviceId returns 500, so the documented happy path is not reproducible by a reader.
+- 500 is returned where the contract declares 404, collapsing "bad input" and "server broken" into one signal.
+- No correlation/request id in any error response to quote in a support ticket.

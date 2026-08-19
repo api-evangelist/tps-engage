@@ -1,0 +1,185 @@
+{
+  "item": [
+    {
+      "id": "aec22810-6e1f-44bf-ad1e-75d41d1e7faa",
+      "name": "Prefetch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "08069785-6caa-4040-a627-7dedf6bac8f1",
+          "name": "Prefetch Media",
+          "request": {
+            "name": "Prefetch Media",
+            "description": {
+              "content": "Retrieves the media information for preloading purposes based on the device ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "prefetch",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) A unique identifier for the device."
+                },
+                {
+                  "description": "The API publisher identifier",
+                  "type": "any",
+                  "value": "{{apiPublisher}}",
+                  "key": "apiPublisher"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c75c6d12-1fa3-422c-b47d-b1d4ade26dcc",
+              "name": "Successful response with media information for prefetching",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prefetch",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) A unique identifier for the device."
+                    },
+                    {
+                      "description": "The API publisher identifier",
+                      "type": "any",
+                      "value": "{{apiPublisher}}",
+                      "key": "apiPublisher"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"creativeId\": \"170254d6-2d89-45db-8613-03fd1efac643\",\n    \"creativeUrl\": \"https://storage.googleapis.com/engage-transcoded-videos/170254d6-2d89-45db-8613-03fd1efac643.mp4\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c32d7f1-da51-4c1b-a85a-6ea516036eb6",
+              "name": "Device ID not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "prefetch",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) A unique identifier for the device."
+                    },
+                    {
+                      "description": "The API publisher identifier",
+                      "type": "any",
+                      "value": "{{apiPublisher}}",
+                      "key": "apiPublisher"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The API publisher identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "sv",
+      "key": "apiPublisher"
+    },
+    {
+      "type": "string",
+      "value": "https://rtb.network.tpsengage.com/api/{{apiPublisher}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2abd0ba7-883d-4ed2-97ec-478791e7f0c8",
+    "name": "Blindspot Pull Play Prefetch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Blindspot Pull API provides two main endpoints to interact with the service:\n1. Play - To retrieve media playback information.\n2. Prefetch Media - To retrieve media in advance based on the device ID.\n",
+      "type": "text/plain"
+    }
+  }
+}

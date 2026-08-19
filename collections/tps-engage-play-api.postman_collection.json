@@ -1,0 +1,185 @@
+{
+  "item": [
+    {
+      "id": "926c80ca-b54b-4bc7-bbc2-cf60b42c9d41",
+      "name": "Play",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3084553b-da1a-4b27-8f92-e11b1ebd0ee5",
+          "name": "Play Media",
+          "request": {
+            "name": "Play Media",
+            "description": {
+              "content": "Retrieves the media that is to be played immediately.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "play",
+                ":deviceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "deviceId",
+                  "description": "(Required) A unique identifier for the device."
+                },
+                {
+                  "description": "The API publisher identifier",
+                  "type": "any",
+                  "value": "{{apiPublisher}}",
+                  "key": "apiPublisher"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57daed98-78eb-47f3-ae59-073cebaec208",
+              "name": "Successful response with media information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "play",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) A unique identifier for the device."
+                    },
+                    {
+                      "description": "The API publisher identifier",
+                      "type": "any",
+                      "value": "{{apiPublisher}}",
+                      "key": "apiPublisher"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bidId\": \"52c95e06-af5f-4f3a-bf33-ae431e596998\",\n  \"creativeId\": \"170254d6-2d89-45db-8613-03fd1efac643\",\n  \"creativeUrl\": \"https://storage.googleapis.com/engage-transcoded-videos/170254d6-2d89-45db-8613-03fd1efac643.mp4\",\n  \"popUrl\": \"https://playlog.network.tpsengage.com/add?location=77276c2f-726a-4d6c-aa87-29041d47419d&media=170254d6-2d89-45db-8613-03fd1efac643&campaign=6253f1d3-2edd-43a2-beac-67b43ab59bae&network=6696bb71-b470-4861-8e8f-fce0c019c3a8&payload=%7B%22bidId%22%3A%2252c95e06-af5f-4f3a-bf33-ae431e596998%22%2C%22audience%22%3A1%2C%22cpm%22%3A1%7D\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3406759d-1f95-4619-962b-3917266cd412",
+              "name": "No content available for playback at the moment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "play",
+                    ":deviceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "deviceId",
+                      "description": "(Required) A unique identifier for the device."
+                    },
+                    {
+                      "description": "The API publisher identifier",
+                      "type": "any",
+                      "value": "{{apiPublisher}}",
+                      "key": "apiPublisher"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The API publisher identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "sv",
+      "key": "apiPublisher"
+    },
+    {
+      "type": "string",
+      "value": "https://rtb.network.tpsengage.com/api/{{apiPublisher}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "554985cc-4b67-4e3f-9e53-33f869b97c72",
+    "name": "Blindspot Pull Play API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Blindspot Pull API provides two main endpoints to interact with the service:\n1. Play - To retrieve media playback information.\n2. Prefetch Media - To retrieve media in advance based on the device ID.\n",
+      "type": "text/plain"
+    }
+  }
+}

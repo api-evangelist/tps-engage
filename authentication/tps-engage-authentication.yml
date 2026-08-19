@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: openapi/_original/tps-engage-blindspot-pull-api-openapi.yaml
+docs: https://tpsengage.github.io/BlindspotPullApi/
+summary:
+  types: []
+  api_key_in: []
+  oauth2_flows: []
+  model: anonymous
+  statement: >-
+    The Blindspot Pull API — the only API TPS Engage publishes publicly — carries no
+    credential of any kind. The published OpenAPI 3.0.0 declares no
+    `components.securitySchemes` and no `security` requirement on either operation,
+    and no authentication is described anywhere in the hosted Swagger UI at
+    https://tpsengage.github.io/BlindspotPullApi/. Both operations were called
+    anonymously on 2026-08-13 against the production host and were served without a
+    401 or 403 (they returned 500 for the deviceId published in the spec's own
+    example). Authorization is therefore positional: the caller must possess a
+    registered `deviceId` UUID, which functions as an unguessable capability in the
+    URL path. That is a bearer-in-URL model with the usual consequences — the
+    identifier leaks into proxy logs, browser history and Referer headers, cannot be
+    scoped, and cannot be rotated without re-provisioning the player device.
+    The commercial platform behind the API (portal.seeblindspot.com) does have real
+    authentication — account sign-in at /auth/login, and the Trust & Security page
+    states "Access control on a least-privilege basis, with multi-factor
+    authentication for administrative and remote access" — but that is the buyer-side
+    web application, not an API credential, and no developer key issuance, OAuth
+    client registration or token endpoint is published.
+schemes: []
+observed:
+- host: rtb.network.tpsengage.com
+  checked: '2026-08-13'
+  note: >-
+    GET /api/sv/play/{deviceId} and GET /api/sv/prefetch/{deviceId} called with no
+    Authorization header, no API key header and no cookie. Neither returned 401/403;
+    both returned 500. No WWW-Authenticate header on any response.
+- host: rtb.network.tpsengage.com
+  checked: '2026-08-13'
+  note: >-
+    Response headers show a Helmet-style hardening baseline
+    (Strict-Transport-Security: max-age=31536000; includeSubDomains,
+    X-Content-Type-Options: nosniff, Referrer-Policy: no-referrer,
+    Content-Security-Policy, X-Frame-Options: SAMEORIGIN) with
+    access-control-allow-origin: * — an intentionally public, browser-callable
+    surface.
+identifiers:
+- name: deviceId
+  in: path
+  format: uuid
+  required: true
+  role: capability
+  description: >-
+    Unique identifier of a registered player device on the Blindspot DOOH network.
+    Sole basis on which the API decides what to return. Provisioned to the screen
+    owner out of band during CMS integration; no self-service issuance is published.
+- name: apiPublisher
+  in: path
+  format: string
+  required: true
+  default: sv
+  role: routing
+  description: >-
+    Server variable in the base URL (https://rtb.network.tpsengage.com/api/{apiPublisher}).
+    Names the publisher/CMS integration, not the caller; it is a routing segment, not
+    a credential.
+gaps:
+- No securitySchemes in the published OpenAPI.
+- No API key, OAuth 2.0, OIDC or mTLS surface published for the Pull API.
+- No token rotation, expiry or revocation story for a compromised deviceId.
+- >-
+  No scope model — a deviceId grants exactly the playback slice for that one screen,
+  which is a small blast radius, but there is nothing to scope down further and
+  nothing to scope up for a multi-screen operator.
+- >-
+  Portal (buyer-side) API access is not documented at all; the full API is described
+  in Blindspot's own marketing as available "reach out to set up a demo", so any
+  campaign/booking API sits behind a sales gate.

@@ -1,42 +1,87 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: probed
-source: live probes of seeblindspot.com, api.seeblindspot.com, api.tpsengage.com
+source: live probes of seeblindspot.com, portal.seeblindspot.com, rtb.network.tpsengage.com, playlog.network.tpsengage.com, api.tpsengage.com, api.seeblindspot.com
 summary: >-
-  No /.well-known/ discovery documents are published on the Blindspot (TPS
-  Engage) hosts. All probed /.well-known/ paths returned 404 (absence is valid
-  data). The host does publish /llms.txt (200) — captured separately in
-  llms/tps-engage-llms.txt.
+  No /.well-known/ discovery document of any kind is published on any Blindspot (TPS
+  Engage) host. Every path probed on 2026-08-13 returned 404 — including on
+  rtb.network.tpsengage.com, the actual API host, which answers with a genuine
+  Fastify JSON 404 rather than a catch-all, so these are real negatives and not an
+  SPA shell masquerading as a hit. No WellKnown or SecurityTxt pointer is emitted
+  from this file, because the file records an absence.
+  This matters more than usual here: Blindspot DOES operate a security mailbox
+  (security@seeblindspot.com) and a safe-harbour disclosure invitation on its Trust &
+  Security page, but publishes no RFC 9116 /.well-known/security.txt, so nothing
+  automated can find it. The one machine-readable agent-facing document the company
+  does serve is /llms.txt on the marketing host (200, captured verbatim in
+  llms/tps-engage-llms.txt).
 hosts:
 - host: seeblindspot.com
   paths:
-  - path: /.well-known/security.txt
-    status: 404
-  - path: /.well-known/openid-configuration
-    status: 404
-  - path: /.well-known/oauth-authorization-server
-    status: 404
-  - path: /.well-known/api-catalog
-    status: 404
-  - path: /.well-known/ai-plugin.json
-    status: 404
-  - path: /llms.txt
-    status: 200
-  - path: /robots.txt
-    status: 200
-  - path: /sitemap.xml
-    status: 200
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /llms.txt, status: 200}
+  - {path: /robots.txt, status: 200}
+  - {path: /sitemap.xml, status: 200}
+- host: rtb.network.tpsengage.com
+  note: >-
+    The production API host. Fastify; returns a JSON envelope on 404
+    ({"message":"Route GET:<path> not found","error":"Not Found","statusCode":404}),
+    which confirms these are true negatives.
+  paths:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /openapi.yaml, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /v1/openapi.json, status: 404}
+  - {path: /api-docs, status: 404}
+  - {path: /, status: 404}
+- host: playlog.network.tpsengage.com
+  note: The proof-of-play callback host referenced by popUrl in the /play response.
+  paths:
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /openapi.yaml, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /v1/openapi.json, status: 404}
+  - {path: /api-docs, status: 404}
+- host: api.tpsengage.com
+  note: Live Express application; answers "Cannot GET <path>" HTML 404 on every path probed. No documented surface.
+  paths:
+  - {path: /, status: 404}
+  - {path: /docs, status: 404}
+  - {path: /swagger, status: 404}
+  - {path: /api-docs, status: 404}
+  - {path: /health, status: 404}
+  - {path: /graphql, status: 404}
+  - {path: /v1, status: 404}
+  - {path: /api, status: 404}
+  - {path: /openapi.json, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+- host: portal.seeblindspot.com
+  note: The buyer-facing Next.js application. Root returns 200 HTML; every /.well-known path returns a true 404, not the app shell.
+  paths:
+  - {path: /, status: 200}
+  - {path: /openapi.json, status: 404}
+  - {path: /api/openapi.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
 - host: api.seeblindspot.com
   paths:
-  - path: /
-    status: 404
-  - path: /.well-known/security.txt
-    status: 404
-  - path: /swagger.json
-    status: 404
-  - path: /openapi.json
-    status: 404
-- host: api.tpsengage.com
-  paths:
-  - path: /
-    status: 404
+  - {path: /, status: 404}
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /swagger.json, status: 404}
+  - {path: /openapi.json, status: 404}
 files: []
+checked: '2026-08-13'

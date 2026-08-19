@@ -1,0 +1,106 @@
+generated: '2026-08-13'
+method: searched
+source: https://seeblindspot.com/dooh-pricing-index/
+docs: https://seeblindspot.com/minimum-budget-dooh-campaign/
+plan_count: 0
+summary: >-
+  Blindspot publishes no subscription plans, no seat tiers and no API pricing. There
+  is exactly one commercial model and it is fully public: consumption billing on a
+  single unit — the play — with the price of every individual screen shown on the map
+  before booking. That is the finding, and it is deliberate on the provider's part
+  rather than an omission: "There is no minimum budget for a digital out-of-home
+  campaign on Blindspot: no retainer, no platform fee, no minimum buy-in."
+  plan_count is 0 because there are genuinely no tiers to enumerate, not because
+  pricing is hidden — Blindspot is one of the very few DOOH platforms that publishes
+  a per-play price index rather than gating rates behind a sales call.
+plans: []
+pricing_model:
+  type: consumption
+  unit: play
+  unit_definition: >-
+    One rendering of a creative on one screen. Defined by the provider at
+    https://seeblindspot.com/what-is-a-play/.
+  currency: USD
+  billing: prepaid wallet
+  minimum: none
+  platform_fee: none
+  retainer: none
+  subscription_fee: none
+  contract: none required
+  quotes:
+  - source: https://seeblindspot.com/minimum-budget-dooh-campaign/
+    text: >-
+      "There is no minimum budget for a digital out-of-home campaign on Blindspot: no
+      retainer, no platform fee, no minimum buy-in."
+  - source: https://seeblindspot.com/minimum-budget-dooh-campaign/
+    text: '"Nothing is charged until you publish" — "you pay for the plays you book and nothing else."'
+  - source: https://seeblindspot.com/dooh-pricing-index/
+    text: >-
+      "There is no CPM floor and no minimum. The unit is the play, priced from $0.23
+      on urban screens, with no thousand-impression block or four-week flight to buy
+      in."
+published_rates:
+  source: https://seeblindspot.com/dooh-pricing-index/
+  period: Q3 2026
+  scope: 24 major cities
+  median_price_per_play_usd: 0.52
+  min_price_per_play_usd: 0.04
+  max_price_per_play_usd: 3.19
+  notes:
+  - '$0.04 — San Francisco urban panels (low end of the index).'
+  - '$2.81 — New York billboards.'
+  - '$3.19 — Singapore airport screens (high end of the index).'
+  - 'Commuter-hour peak multipliers of 1.0x to 1.7x are published against the base rate.'
+  - 'A single Times Square play is published as costing as little as $40.'
+worked_examples:
+  source: https://seeblindspot.com/minimum-budget-dooh-campaign/
+  note: Provider-published illustrations of what a budget buys, not tiers.
+  examples:
+  - budget_usd: 100
+    approx_plays: 430
+    description: One busy street screen for about a week.
+  - budget_usd: 500
+    approx_plays: 2100
+    description: A couple of screens in a neighborhood for a month.
+  - budget_usd: 1000
+    approx_plays: 4300
+    description: A multi-district city campaign.
+  - budget_usd: 5000
+    approx_plays: 21700
+    description: A multi-neighborhood city flight including premium billboards.
+wallet_and_credits:
+  source: https://seeblindspot.com/refund-and-credits-policy/
+  model: prepaid wallet, denominated in USD
+  credit_expiry: 12 months after being added to the wallet, unless a longer period is required by law
+  delivered_plays_refundable: false
+  undelivered_remedy: >-
+    Default remedy is non-charge, or credits plus up to a 10% bonus; a cash refund can
+    be requested instead.
+  unused_funds_refundable: true
+  unused_funds_detail: >-
+    "Unused wallet funds that have not yet been applied to a Campaign may be refunded
+    on written request", less actual non-recoverable third-party payment-processing
+    fees and any amounts owed. Requests go to billing@seeblindspot.com.
+  make_good_window: 15 days after campaign end (Programmatic Guaranteed under-delivery)
+included_free:
+- name: Blinky (agentic AI media planner)
+  detail: >-
+    Published as free — advertisers pay only for media. Blinky builds the screen-by-screen
+    plan, books it and oversees delivery.
+api_pricing:
+  published: false
+  detail: >-
+    No pricing, quota or commercial terms are published for the Blindspot Pull API.
+    It is a supply-side integration surface for screen owners and CMS partners, not a
+    metered product; screen owners are paid for inventory rather than charged for API
+    calls, but no revenue-share or payout schedule is published either.
+observed:
+- url: https://seeblindspot.com/dooh-pricing-index/
+  status: 200
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/minimum-budget-dooh-campaign/
+  status: 200
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/refund-and-credits-policy/
+  status: 200
+  checked: '2026-08-13'

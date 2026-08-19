@@ -1,0 +1,120 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/tps-engage-blindspot-pull-api-openapi.yaml + live probes of rtb.network.tpsengage.com (2026-08-13)
+docs: https://tpsengage.github.io/BlindspotPullApi/
+summary: >-
+  Cross-cutting runtime semantics for the Blindspot Pull API. This is a deliberately
+  minimal, device-facing pull protocol: two anonymous GETs that a screen's media
+  player polls. Most of the conventions an agent looks for — idempotency keys,
+  pagination, request-id tracing, rate-limit headers, a structured error envelope,
+  an explicit version header — are simply not implemented, and TPS Engage publishes
+  no API style guide. Everything below is either read out of the published OpenAPI
+  or observed on live unauthenticated responses; nothing is inferred from a house
+  style the provider has not stated.
+authentication:
+  style: none
+  detail: >-
+    No securitySchemes, no security requirement, no WWW-Authenticate on any observed
+    response. Access is by possession of a registered deviceId UUID in the path.
+  see: authentication/tps-engage-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  scope: null
+  retention: null
+  detail: >-
+    No Idempotency-Key (or equivalent) header is documented or accepted. Both
+    published operations are GETs and therefore idempotent by HTTP method, but that
+    is a property of the verb, not an idempotency facility: there is no write
+    surface, no request-replay protection, and no de-duplication contract for the
+    popUrl proof-of-play callback, which is the one call in the flow where a retry
+    could plausibly double-count a play. The spec says nothing about whether
+    re-requesting a popUrl logs a second play.
+pagination:
+  style: none
+  params: []
+  response_fields: []
+  detail: >-
+    GET /prefetch/{deviceId} returns a bare JSON array with no envelope, no cursor,
+    no limit/offset parameters and no Link header. The array is whatever the platform
+    decides the device should preload; a large prefetch list has no documented
+    truncation or continuation mechanism.
+field_expansion:
+  supported: false
+  detail: No expand/fields/include parameters; both responses are fixed shapes.
+sparse_fieldsets:
+  supported: false
+metadata:
+  supported: false
+  detail: >-
+    No customer-controlled metadata field. Campaign/network context reaches the
+    device only as query parameters baked into the returned popUrl, including a
+    URL-encoded `payload` JSON blob carrying bidId, audience and cpm.
+request_id_tracing:
+  supported: false
+  request_header: null
+  response_header: null
+  detail: >-
+    No X-Request-Id / X-Correlation-Id / traceparent on any observed response. There
+    is no published correlation handle to quote in a support ticket; the only
+    per-transaction identifiers a caller ever sees are bidId and creativeId inside a
+    200 body.
+versioning:
+  style: path-segment-is-publisher-not-version
+  current: '1.0.0'
+  detail: >-
+    info.version is 1.0.0 in the OpenAPI. The path segment in the server URL,
+    https://rtb.network.tpsengage.com/api/{apiPublisher} (default `sv`), is a
+    publisher/integration identifier, NOT an API version — a caller cannot pin a
+    version, and there is no Accept-version, X-Version or /v1/ convention. No media
+    type versioning. See lifecycle/tps-engage-lifecycle.yml.
+error_envelope:
+  format: mixed
+  rfc9457: false
+  detail: >-
+    Two different error shapes were observed on the same host on 2026-08-13. An
+    unrouted path returns Fastify's default JSON envelope,
+    {"message":"Route GET:/openapi.json not found","error":"Not Found","statusCode":404},
+    with content-type application/json. A routed operation that fails returns
+    content-type text/plain with the literal body "Internal Server Error" and no
+    JSON at all. Neither carries a machine-readable error code, a type URI, or a
+    documented field an agent can branch on. No application/problem+json anywhere.
+  see: errors/tps-engage-problem-types.yml
+rate_limit_signaling:
+  supported: false
+  headers: []
+  exhaustion_status: null
+  detail: >-
+    No X-RateLimit-*, no RateLimit-*, no Retry-After on any observed response, and no
+    published limits. See rate-limits/tps-engage-rate-limits.yml.
+caching:
+  supported: false
+  detail: >-
+    No Cache-Control, ETag or Last-Modified on observed responses. The player is
+    expected to poll; the prefetch endpoint is the caching mechanism, implemented in
+    the client rather than signalled by the API.
+cors:
+  enabled: true
+  detail: 'access-control-allow-origin: * on every observed response — browser-callable from any origin.'
+transport_security:
+  https_only: true
+  hsts: true
+  detail: >-
+    Strict-Transport-Security: max-age=31536000; includeSubDomains observed on
+    rtb.network.tpsengage.com (2026-08-13), alongside a Helmet-style header baseline:
+    X-Content-Type-Options: nosniff, X-Frame-Options: SAMEORIGIN,
+    Referrer-Policy: no-referrer, Cross-Origin-Opener-Policy: same-origin,
+    Cross-Origin-Resource-Policy: same-origin, Origin-Agent-Cluster: ?1,
+    X-Permitted-Cross-Domain-Policies: none, and a restrictive
+    Content-Security-Policy (default-src 'self').
+content_types:
+  request: []
+  response:
+  - application/json
+  - text/plain
+cross_links:
+  errors: errors/tps-engage-problem-types.yml
+  lifecycle: lifecycle/tps-engage-lifecycle.yml
+  authentication: authentication/tps-engage-authentication.yml
+  rate_limits: rate-limits/tps-engage-rate-limits.yml
+  data_model: data-model/tps-engage-data-model.yml

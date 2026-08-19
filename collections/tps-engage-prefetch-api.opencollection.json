@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Blindspot Pull Play Prefetch API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prefetch",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Prefetch Media",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rtb.network.tpsengage.com/api/{apiPublisher}/prefetch/:deviceId",
+            "params": [
+              {
+                "name": "deviceId",
+                "value": "77276c2f-726a-4d6c-aa87-29041d47419d",
+                "type": "path",
+                "description": "A unique identifier for the device."
+              }
+            ]
+          },
+          "docs": "Retrieves the media information for preloading purposes based on the device ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

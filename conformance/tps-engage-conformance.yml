@@ -1,34 +1,109 @@
-generated: '2026-07-21'
-method: derived
-source: openapi/tps-engage-blindspot-pull-api-openapi.yaml + seeblindspot.com legal pages
+generated: '2026-08-13'
+method: searched
+source: https://seeblindspot.com/trust-and-security/
+docs: https://seeblindspot.com/legal/
 summary: >-
-  Cross-cutting standards posture derived from the published Blindspot Pull
-  API spec and the public site. No compliance certifications (SOC 2, ISO
-  27001, etc.) are published on seeblindspot.com; no trust center was found.
+  Cross-cutting standards posture for TPS Engage / Blindspot. Upgraded from derived to
+  searched on 2026-08-13 after reading the company's Trust & Security page, legal hub,
+  subprocessor list and accessibility statement. The technical-standards picture is
+  unchanged and uniformly negative — the published Pull API conforms to no API
+  interoperability standard, declares no security scheme, and uses no problem-details,
+  pagination or idempotency convention. The compliance picture is real but
+  privacy-and-accessibility shaped rather than audit shaped: a GDPR-style DPA, a
+  named DPO, a maintained 30-day-notice subprocessor list and a WCAG 2.2 AA claim,
+  with no third-party security certification of any kind and the company saying so
+  explicitly.
 standards:
 - id: oauth2
   conforms: false
-  evidence: The Pull API OpenAPI declares no securitySchemes; no OAuth documentation found.
+  evidence: The Pull API OpenAPI declares no securitySchemes; no OAuth documentation found on any host.
 - id: oidc
   conforms: false
-  evidence: /.well-known/openid-configuration returns 404 on all probed hosts.
+  evidence: /.well-known/openid-configuration returns 404 on all probed hosts (re-probed 2026-08-13).
 - id: rfc9457
   conforms: false
-  evidence: Error responses are bare HTTP status codes; no application/problem+json media type in the spec.
+  evidence: >-
+    Error responses are bare HTTP status codes; no application/problem+json in the
+    spec and none observed live. Two inconsistent envelopes (text/plain and Fastify
+    JSON) are served from the same host.
+- id: rfc9116
+  conforms: false
+  evidence: >-
+    No /.well-known/security.txt on seeblindspot.com, rtb.network.tpsengage.com or
+    api.tpsengage.com, despite a published security mailbox
+    (security@seeblindspot.com) and safe-harbour statement on /trust-and-security/.
+- id: rfc8594
+  conforms: false
+  evidence: No Sunset or Deprecation headers observed; no deprecation policy published.
 - id: json:api
   conforms: false
   evidence: Responses are ad-hoc JSON objects/arrays, not JSON:API envelopes.
 - id: pagination
   conforms: false
-  evidence: No pagination parameters or headers anywhere in the spec (single-resource GET endpoints).
+  evidence: No pagination parameters or headers anywhere in the spec; /prefetch returns a bare unbounded array.
 - id: idempotency
   conforms: false
   evidence: >-
     No Idempotency-Key support documented. Both operations are GETs (naturally
-    idempotent reads) but no idempotency mechanism is published.
+    idempotent reads) but no idempotency mechanism is published, and the popUrl
+    proof-of-play callback has no documented replay/de-duplication contract.
+- id: rate-limit-headers
+  conforms: false
+  evidence: >-
+    No RateLimit / X-RateLimit / Retry-After headers observed on any live response
+    (2026-08-13); no limits published.
 - id: openrtb
   conforms: false
   evidence: >-
-    The host rtb.network.tpsengage.com and bid/cpm fields indicate an RTB-style
-    delivery pipeline, but the public Pull API is a proprietary pull protocol,
-    not IAB OpenRTB; no OpenRTB conformance claim is published.
+    The host rtb.network.tpsengage.com and the bidId/audience/cpm fields in the popUrl
+    payload indicate an RTB-style delivery pipeline, but the public Pull API is a
+    proprietary pull protocol, not IAB OpenRTB, and no OpenRTB conformance claim is
+    published. Blindspot does publish SSP/DSP and programmatic-guaranteed explainers
+    (/ssp-dsp-dooh/, /programmatic-guaranteed-dooh/, /private-marketplace-dooh/)
+    describing participation in the programmatic DOOH ecosystem, but names no
+    specification version.
+- id: gdpr
+  conforms: true
+  evidence: >-
+    "A Data Processing Addendum is available to customers" (Trust & Security). Named
+    DPO contact dpo@seeblindspot.com. EEA customer data hosted in EU data centres.
+    EEA contracting entity SC FREEDOM MASK SRL (Bucharest). Maintained public
+    subprocessor list at /subprocessors/ with a commitment to "at least 30 days'
+    notice before adding or replacing a subprocessor". Self-attested; not audited.
+- id: wcag-2.2-aa
+  conforms: true
+  evidence: >-
+    Published accessibility statement at /accessibility-statement/ claiming WCAG 2.2 AA
+    conformance with a barrier-reporting route. Self-attested; no VPAT or third-party
+    audit published.
+- id: tls
+  conforms: true
+  evidence: >-
+    "Encryption of data in transit (TLS 1.2+) and of stored personal data at rest"
+    (Trust & Security). Verified by probe: seeblindspot.com negotiates TLS 1.3,
+    rtb.network.tpsengage.com TLS 1.2, HSTS max-age=31536000 with includeSubDomains on
+    both.
+- id: soc2
+  conforms: false
+  evidence: >-
+    No SOC 2 report or claim. The Trust & Security page states "Formal third-party
+    certifications, where pursued, will be listed here as they are obtained."
+- id: iso-27001
+  conforms: false
+  evidence: No ISO 27001 certification claimed; same statement as above.
+- id: pci-dss
+  conforms: false
+  evidence: >-
+    No PCI DSS claim. Card handling appears to be delegated (the platform runs a
+    prepaid wallet and the refund policy refers to "third-party payment-processing
+    fees"), but no processor or SAQ level is named.
+observed:
+- url: https://seeblindspot.com/trust-and-security/
+  status: 200
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/accessibility-statement/
+  status: 200
+  checked: '2026-08-13'
+- url: https://seeblindspot.com/subprocessors/
+  status: 200
+  checked: '2026-08-13'

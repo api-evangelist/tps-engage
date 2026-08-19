@@ -1,0 +1,54 @@
+generated: '2026-08-13'
+method: searched
+source: https://tpsengage.github.io/BlindspotPullApi/
+docs: null
+limit_count: 0
+summary: >-
+  TPS Engage publishes no rate limits for the Blindspot Pull API, and the live API
+  returns no rate-limit signalling headers. This is an honest zero, not an unchecked
+  field: the hosted Swagger UI, the OpenAPI itself, the Terms of Service and the
+  Acceptable Use policy were all read on 2026-08-13 and none states a request quota,
+  a polling interval, a burst allowance or a 429 behaviour. Since the API is the
+  device-facing polling surface for DOOH players, a published minimum poll interval
+  is exactly the guidance an integrator needs and exactly what is missing.
+limits: []
+headers:
+  request: []
+  response: []
+  observed: []
+  detail: >-
+    No X-RateLimit-Limit / -Remaining / -Reset, no RFC 9238-style RateLimit /
+    RateLimit-Policy, and no Retry-After were present on any response observed from
+    https://rtb.network.tpsengage.com on 2026-08-13 — not on a 200-class route, not
+    on the 500s returned by both documented operations, and not on the Fastify 404
+    for an unrouted path. An agent has no runtime backpressure signal to read.
+exhaustion:
+  status_code: null
+  body: null
+  detail: No 429 behaviour is documented and none was observed.
+policy_statements:
+- source: https://seeblindspot.com/terms-of-service/
+  quote: >-
+    "reverse engineer, decompile, copy, modify, scrape, frame, or create derivative
+    works of the Platform"
+  note: >-
+    Terms of Service section 6.3. This is a prohibition on automated misuse of the
+    buyer-facing Platform, not a quantified API rate limit, and it is recorded here
+    only so the absence of a real limit is not mistaken for an unread policy.
+observed:
+- url: https://rtb.network.tpsengage.com/api/sv/play/77276c2f-726a-4d6c-aa87-29041d47419d
+  status: 500
+  rate_limit_headers: none
+  checked: '2026-08-13'
+- url: https://rtb.network.tpsengage.com/api/sv/prefetch/77276c2f-726a-4d6c-aa87-29041d47419d
+  status: 500
+  rate_limit_headers: none
+  checked: '2026-08-13'
+- url: https://rtb.network.tpsengage.com/
+  status: 404
+  rate_limit_headers: none
+  checked: '2026-08-13'
+gaps:
+- No published request quota or polling cadence for player devices.
+- No rate-limit response headers, so clients cannot adapt without a documented constant.
+- No documented 429 or Retry-After contract.

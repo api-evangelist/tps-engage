@@ -1,0 +1,112 @@
+generated: '2026-08-13'
+method: derived
+source: openapi/_original/tps-engage-blindspot-pull-api-openapi.yaml
+summary: >-
+  Request/response examples extracted verbatim from the examples TPS Engage publishes
+  inside the Blindspot Pull API OpenAPI. Every value below is the provider's own —
+  nothing here is synthesised. Coverage is complete for 2xx (both operations carry an
+  in-spec example, and /prefetch carries two named examples covering the populated
+  and empty cases) and absent for every non-2xx response: 204, 404 and the observed
+  500 are declared or observed with no body example at all.
+coverage:
+  operations_total: 2
+  operations_with_examples: 2
+  responses_total: 4
+  responses_with_examples: 3
+  non_2xx_with_examples: 0
+examples:
+- operation: GET /play/{deviceId}
+  operation_id: playMedia
+  api: TPS Engage Play API
+  spec: openapi/tps-engage-play-api-openapi.yml
+  request:
+    method: GET
+    url: https://rtb.network.tpsengage.com/api/sv/play/77276c2f-726a-4d6c-aa87-29041d47419d
+    headers: {}
+    path_params:
+      deviceId: 77276c2f-726a-4d6c-aa87-29041d47419d
+  responses:
+  - status: 200
+    name: media scheduled
+    source: in-spec example
+    content_type: application/json
+    body:
+      bidId: 52c95e06-af5f-4f3a-bf33-ae431e596998
+      creativeId: 170254d6-2d89-45db-8613-03fd1efac643
+      creativeUrl: https://storage.googleapis.com/engage-transcoded-videos/170254d6-2d89-45db-8613-03fd1efac643.mp4
+      popUrl: https://playlog.network.tpsengage.com/add?location=77276c2f-726a-4d6c-aa87-29041d47419d&media=170254d6-2d89-45db-8613-03fd1efac643&campaign=6253f1d3-2edd-43a2-beac-67b43ab59bae&network=6696bb71-b470-4861-8e8f-fce0c019c3a8&payload=%7B%22bidId%22%3A%2252c95e06-af5f-4f3a-bf33-ae431e596998%22%2C%22audience%22%3A1%2C%22cpm%22%3A1%7D
+    note: >-
+      popUrl is the proof-of-play callback the player requests after rendering. Its
+      query string is the only place campaign and network identifiers appear in the
+      public contract; `payload` is a URL-encoded JSON object
+      {"bidId":"...","audience":1,"cpm":1}.
+  - status: 204
+    name: nothing to play
+    source: declared in spec, no body example
+    content_type: null
+    body: null
+    note: 'Spec text: "No content available for playback at the moment." Players should fall back to house content.'
+- operation: GET /prefetch/{deviceId}
+  operation_id: prefetchMedia
+  api: TPS Engage Prefetch API
+  spec: openapi/tps-engage-prefetch-api-openapi.yml
+  request:
+    method: GET
+    url: https://rtb.network.tpsengage.com/api/sv/prefetch/77276c2f-726a-4d6c-aa87-29041d47419d
+    headers: {}
+    path_params:
+      deviceId: 77276c2f-726a-4d6c-aa87-29041d47419d
+  responses:
+  - status: 200
+    name: withContent
+    source: in-spec named example
+    content_type: application/json
+    body:
+    - creativeId: 170254d6-2d89-45db-8613-03fd1efac643
+      creativeUrl: https://storage.googleapis.com/engage-transcoded-videos/170254d6-2d89-45db-8613-03fd1efac643.mp4
+    note: Provider's own "Response with prefetch content" example.
+  - status: 200
+    name: noContent
+    source: in-spec named example
+    content_type: application/json
+    body: []
+    note: >-
+      Provider's own "Response with no prefetch content" example. An empty array is a
+      success, not an error — the distinction an agent most needs and the one the
+      provider did document.
+  - status: 404
+    name: unknown device
+    source: declared in spec, no body example
+    content_type: null
+    body: null
+    note: 'Spec text: "Device ID not found."'
+observed_not_in_spec:
+- operation: GET /play/{deviceId}
+  status: 500
+  content_type: text/plain; charset=utf-8
+  body: Internal Server Error
+  checked: '2026-08-13'
+  note: >-
+    Observed live against the spec's own example deviceId. Not declared in the
+    OpenAPI. See errors/tps-engage-problem-types.yml.
+- operation: GET /prefetch/{deviceId}
+  status: 500
+  content_type: text/plain; charset=utf-8
+  body: Internal Server Error
+  checked: '2026-08-13'
+  note: >-
+    Observed live against the spec's own example deviceId, where the spec declares
+    404 for an unknown device. Not declared in the OpenAPI.
+- operation: any unrouted path
+  status: 404
+  content_type: application/json; charset=utf-8
+  body:
+    message: 'Route GET:/openapi.json not found'
+    error: Not Found
+    statusCode: 404
+  checked: '2026-08-13'
+  note: Fastify default envelope. The API's two error shapes are inconsistent with each other.
+gaps:
+- No examples for any error response (204/404/500).
+- No curl/SDK code samples anywhere in the docs.
+- The single published deviceId example does not resolve against the live API.

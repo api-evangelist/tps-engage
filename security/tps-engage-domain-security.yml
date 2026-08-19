@@ -1,18 +1,37 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
 - host: seeblindspot.com
   https: true
   tls_version: TLSv1.3
-  cert_expires: Sep 30 06:12:47 2026 GMT
+  cert_expires: Mar  2 23:59:59 2027 GMT
   hsts: true
   hsts_max_age: 31536000
 - host: rtb.network.tpsengage.com
   https: true
   tls_version: TLSv1.2
   cert_expires: Nov 20 23:59:59 2026 GMT
-  hsts: null
+  hsts: true
+  hsts_max_age: 31536000
+  hsts_include_subdomains: true
+  hsts_note: >-
+    Corrected by hand on 2026-08-13. The automated probe recorded hsts: null because
+    it reads headers only from a 2xx response, and every path on this host returns a
+    4xx/5xx to an anonymous caller. Observed directly on
+    GET https://rtb.network.tpsengage.com/ (404) and on both documented operations:
+    "Strict-Transport-Security: max-age=31536000; includeSubDomains".
+  other_headers_observed:
+  - 'Content-Security-Policy: default-src ''self''; …'
+  - 'X-Content-Type-Options: nosniff'
+  - 'X-Frame-Options: SAMEORIGIN'
+  - 'Referrer-Policy: no-referrer'
+  - 'Cross-Origin-Opener-Policy: same-origin'
+  - 'Cross-Origin-Resource-Policy: same-origin'
+  - 'Origin-Agent-Cluster: ?1'
+  - 'X-Permitted-Cross-Domain-Policies: none'
+  - 'access-control-allow-origin: *'
+  checked: '2026-08-13'
 domains:
 - domain: seeblindspot.com
   dnssec: false

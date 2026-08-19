@@ -2,20 +2,16 @@ generated: '2026-07-21'
 method: derived
 source: openapi/tps-engage-blindspot-pull-api-openapi.yaml
 status: candidate
-summary: >-
-  No official hosted or remote MCP server was found for Blindspot / TPS Engage
-  (no MCP references on seeblindspot.com, the TPSEngage GitHub org, or the
-  official MCP registry surface searched). This is a candidate tool list
-  derived from the published Blindspot Pull API OpenAPI (device-facing
-  playback endpoints for screen owners on the DOOH network).
+summary: No official hosted or remote MCP server was found for Blindspot / TPS Engage (no MCP references
+  on seeblindspot.com, the TPSEngage GitHub org, or the official MCP registry surface searched). This
+  is a candidate tool list derived from the published Blindspot Pull API OpenAPI (device-facing playback
+  endpoints for screen owners on the DOOH network).
 name: tps-engage-pull-api (candidate)
 transport: none
 tools:
 - name: play_media
-  description: >-
-    Retrieve the creative a device (screen) should play immediately. Returns
-    bidId, creativeId, creativeUrl, and the popUrl proof-of-play callback.
-    204 when nothing is scheduled for playback.
+  description: Retrieve the creative a device (screen) should play immediately. Returns bidId, creativeId,
+    creativeUrl, and the popUrl proof-of-play callback. 204 when nothing is scheduled for playback.
   operation: GET /play/{deviceId}
   parameters:
   - name: deviceId
@@ -23,13 +19,17 @@ tools:
     required: true
     description: Unique identifier of the player device.
 - name: prefetch_media
-  description: >-
-    Retrieve creatives the device should preload/cache ahead of playback.
-    Returns an array of creativeId/creativeUrl items (empty when nothing to
-    prefetch). 404 when the device ID is unknown.
+  description: Retrieve creatives the device should preload/cache ahead of playback. Returns an array
+    of creativeId/creativeUrl items (empty when nothing to prefetch). 404 when the device ID is unknown.
   operation: GET /prefetch/{deviceId}
   parameters:
   - name: deviceId
     type: string
     required: true
     description: Unique identifier of the player device.
+deployment:
+  mode: none
+  verified: derived
+  tools: 2
+  checked: '2026-08-12'
+  source: catalog MCP census
