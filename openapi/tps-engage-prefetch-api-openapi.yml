@@ -1,14 +1,12 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Blindspot Pull Play Prefetch API
+  title: Blindspot Pull Prefetch API
   version: 1.0.0
   description: 'The Blindspot Pull API provides two main endpoints to interact with the service:
 
     1. Play - To retrieve media playback information.
 
-    2. Prefetch Media - To retrieve media in advance based on the device ID.
-
-    '
+    2. Prefetch Media - To retrieve media in advance based on the device ID.'
 servers:
 - url: https://rtb.network.tpsengage.com/api/{apiPublisher}
   variables:
@@ -50,6 +48,8 @@ paths:
           description: Device ID not found
       tags:
       - Prefetch
+      operationId: getPrefetchByDeviceId
+      x-operation-id-source: derived
 components:
   schemas:
     PrefetchResponse:
