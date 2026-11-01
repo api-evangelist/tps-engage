@@ -1,4 +1,4 @@
-# TPS Engage (Blindspot)
+# TPS Engage
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,16 +64,129 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TPS Engage, LLC operates [Blindspot](https://seeblindspot.com/), a self-serve
-programmatic digital out-of-home (DOOH) advertising platform — 3,000,000+
-digital billboards and screens in 50+ countries, bookable by the exact hour
-with pay-per-play pricing and an agentic AI media planner (Blinky).
+TPS Engage, LLC operates Blindspot (seeblindspot.com), a self-serve programmatic digital out-of-home (DOOH) advertising platform: 3,000,000+ digital billboards and screens in 50+ countries bookable by the exact hour, with pay-per-play pricing, no minimums, and an agentic AI media planner (Blinky). The company publishes one public API — the Blindspot Pull API, the device-facing surface screen owners use to pull the creative to play, prefetch media, and log verified proof-of-play — documented with an OpenAPI 3.0 spec on the TPSEngage GitHub org. Originally added to the API Evangelist network as a Techstars portfolio lead, this profile has been enriched from Blindspot's public surface.
 
-The company publishes one public API, the **Blindspot Pull API** — the
-device-facing surface screen owners use to pull the creative to play,
-prefetch media, and log verified proof-of-play — documented with an OpenAPI
-3.0 spec at [tpsengage.github.io/BlindspotPullApi](https://tpsengage.github.io/BlindspotPullApi/).
+**Areas:** Company · Advertising · Digital Out Of Home · Digital Billboards · Programmatic Advertising · Media Buying · Out-of-Home
 
-Backed by: Techstars. Originally added to the API Evangelist network as a
-Techstars portfolio lead; enriched from Blindspot's public surface (see
-`apis.yml` for the full artifact index).
+## TPS Engage on APIs.io
+
+Everything profiled for TPS Engage is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/tps-engage/](https://apis.io/providers/tps-engage/)** — or go straight to one of the APIs or properties below.
+
+### APIs (2)
+
+- [TPS Engage Play API](https://apis.io/apis/tps-engage/tps-engage-play-api/) — The Play API from TPS Engage — 1 operation(s) for play.
+- [TPS Engage Prefetch API](https://apis.io/apis/tps-engage/tps-engage-prefetch-api/) — The Prefetch API from TPS Engage — 1 operation(s) for prefetch.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [tps-engage-pull-api (candidate)](https://apis.io/servers/tps-engage/tps-engage-pull-api-candidate/)
+
+#### Collections (2)
+
+Postman and Open Collection request collections.
+
+- [Blindspot Pull Play API](https://apis.io/collections/tps-engage/open-tps-engage-play-api/)
+- [Blindspot Pull Play Prefetch API](https://apis.io/collections/tps-engage/open-tps-engage-prefetch-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Tps Engage Blindspot Pull Api Overlay](https://apis.io/overlays/tps-engage/tps-engage-blindspot-pull-api-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Tps Engage Authentication](https://apis.io/security/tps-engage/tps-engage-authentication/)
+- [Tps Engage Domain Security](https://apis.io/security/tps-engage/tps-engage-domain-security/)
+- [Tps Engage Trust Center](https://apis.io/security/tps-engage/tps-engage-trust-center/)
+- [Tps Engage Vulnerability Disclosure](https://apis.io/security/tps-engage/tps-engage-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Tps Engage Plans Pricing](https://apis.io/plans/tps-engage/tps-engage-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Tps Engage Rate Limits](https://apis.io/rate-limits/tps-engage/tps-engage-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://seeblindspot.com/)
+- [Documentation](https://tpsengage.github.io/BlindspotPullApi/)
+- [Getting started](https://seeblindspot.com/create-your-first-campaign-in-less-than-5-minutes-step-by-step/)
+- [API reference](https://tpsengage.github.io/BlindspotPullApi/)
+- [Pricing](https://seeblindspot.com/dooh-pricing-index/)
+- [Sign up](https://portal.seeblindspot.com/join)
+- [Support](https://seeblindspot.com/contact/)
+- [Terms of service](https://seeblindspot.com/terms-of-service/)
+- [Privacy policy](https://seeblindspot.com/privacy-policy/)
+- [GitHub](https://github.com/TPSEngage)
+
+## API Evangelist rating
+
+**Kin Score 47.6** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 47.4 |
+| Contract governance | 18.2 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 60.5 |
+
+**Agent readiness 27.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | derived (partial credit) |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/tps-engage/](https://apis.io/providers/tps-engage/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TPS Engage: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/tps-engage/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
